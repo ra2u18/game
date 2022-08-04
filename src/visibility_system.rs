@@ -12,14 +12,10 @@ impl<'a> System<'a> for VisibilitySystem {
                         ReadStorage<'a, Player>);
 
     fn run(&mut self, data : Self::SystemData) {
-        println!("Viewshed ran...");
 
         let (mut map, entities, mut viewshed, pos, player) = data;
 
         for (ent, viewshed, pos) in (&entities, &mut viewshed, &pos).join() {
-            println!("Pos {}-{}", pos.x, pos.y);
-            // println!("Viewshed {:#?}", viewshed);
-
             if viewshed.dirty {
                 viewshed.dirty = false;
                 viewshed.visible_tiles.clear();
